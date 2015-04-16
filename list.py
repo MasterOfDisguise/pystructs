@@ -3,7 +3,49 @@ import unittest
 
 class List(object):
     def __init__(self):
+        self.head = None
         print('new')
+
+    def append(self, value):
+        end_node = self.head
+        new_node = Node(value)
+        if self.head is None:
+            self.head = Node(value)
+        elif self.head is not None:
+            while end_node.next is not None:
+                end_node = end_node.next
+            end_node.next = new_node
+
+    def __len__(self):
+        len = 0
+        if self.head is None:
+            return len
+        elif self.head is not None:
+            true = True
+            target = self.head
+            len += 1
+            while true:
+                if target.next is None:
+                    true = False
+                    return len
+                target = self.head.next
+                len += 1
+
+
+    def __getitem__(self, item):
+        target = self.head
+        if item > len(self):
+            print "Error, item does not exist"
+        elif item <= len(self):
+            for i in range(item):
+                target = self.head.next
+            return target.value
+
+
+class Node(object):
+    def __init__(self, value):
+        self.value = value
+        self.next = None
 
 
 class TestList(unittest.TestCase):
