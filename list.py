@@ -149,3 +149,15 @@ class TestList(unittest.TestCase):
         self.assertEquals(my_list[1], 'c')
         self.assertEquals(my_list[2], 'b')
         self.assertEquals(my_list[3], 'a')
+
+    def test_can_add_many_kinds_of_things_to_list(self):
+        my_list = List()
+        my_list.append('a')
+        my_list.append(2)
+        my_list.append('abcde')
+        my_list.append([1, 2, 3])
+        self.assertEquals(len(my_list), 4)
+        self.assertEquals(my_list[0], 'a')
+        self.assertEquals(my_list[1], 2)
+        self.assertEquals(my_list[2], 'abcde')
+        self.assertEquals(my_list[3], [1, 2, 3])
