@@ -28,9 +28,8 @@ class List(object):
                 if target.next is None:
                     true = False
                     return len
-                target = self.head.next
+                target = target.next
                 len += 1
-
 
     def __getitem__(self, item):
         target = self.head
