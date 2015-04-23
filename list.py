@@ -4,7 +4,7 @@ import unittest
 class List(object):
     def __init__(self):
         self.head = None
-        print('new')
+        print 'new'
 
     def append(self, value):
         end_node = self.head
@@ -37,8 +37,72 @@ class List(object):
             print "Error, item does not exist"
         elif item <= len(self):
             for i in range(item):
-                target = self.head.next
+                target = target.next
             return target.value
+
+    def insert(self, place, item):
+        new_node = Node(item)
+        target = self.head
+        target2 = self.head
+        if place == 0:
+            new_node.next = self.head
+            self.head = new_node
+        else:
+            for i in range(place-1):
+                target = target.next
+            for i in range(place):
+                target2 = target2.next
+            target.next = new_node
+            new_node.next = target2
+
+    def remove(self, item):
+        target = self.head
+        running = True
+        while running:
+            target = target.next
+            if target.next.value == item:
+                target.next = target.next.next
+                running = False
+            if target.next.value is None:
+                print "item not in list"
+                running = False
+
+    def index(self, item):
+        target = self.head
+        place = 0
+        running = True
+        if target.value == item:
+            return place
+        while running:
+            place += 1
+            target = target.next
+            if target.value == item:
+                return place
+            elif target is None:
+                print "item not in list"
+                running = False
+
+    def count(self, item):
+        target = self.head
+        number = 0
+        while target is not None:
+            if target.value == item:
+                number += 1
+            target = target.next
+        return number
+
+    def reverse(self):
+        length = len(self)
+        prev_node = None
+        cur_node = self.head
+        next_node = cur_node.next
+        while next_node is not None:
+            cur_node.next = prev_node
+            prev_node = cur_node
+            cur_node = next_node
+            next_node = cur_node.next
+        cur_node.next = prev_node
+        self.head = cur_node
 
 
 class Node(object):
